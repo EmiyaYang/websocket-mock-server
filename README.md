@@ -1,4 +1,4 @@
-A simple and configurable mock server with UI console for websocket, with which you either sending message manually or makes rules to get matched response. Err... It's hard to summarize, Let's take a look!
+A simple and configurable mock server with UI console for websocket, with which you can either send message manually or make rules to get matched response. Err... It's hard to summarize, Let's take a look!
 
 # Installation
 
