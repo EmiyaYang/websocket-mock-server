@@ -2,18 +2,21 @@
   "name": "websocket-mock-server",
   "version": "0.1.0",
   "description": "provide mock server for native websocket test",
+  "keywords": ["websocket", "ws", "mock", "server"],
   "main": "index.js",
   "bin": {
     "wsmock": "node ./index.js"
   },
   "scripts": {
-    "test": "node ./index.js"
+    "test": "node ./index.js -c ./test/config.js"
   },
   "author": "emiyayang",
   "license": "ISC",
   "dependencies": {
     "commander": "^2.19.0",
+    "ejs": "^2.6.1",
     "koa": "^2.6.2",
+    "koa-views": "^6.1.5",
     "ws": "^6.1.2"
   }
 }
