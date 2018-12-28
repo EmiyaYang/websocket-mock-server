@@ -22,4 +22,9 @@ try {
   process.exit(1);
 }
 
-supervisor.run(["--watch", configPath, "--", "./lib/main.js"]);
+supervisor.run([
+  "--watch",
+  configPath,
+  "--",
+  path.resolve(__dirname, "./lib/main.js")
+]);
