@@ -1,11 +1,11 @@
 {
   "name": "websocket-mock-server",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "provide mock server for native websocket test",
   "keywords": ["websocket", "ws", "mock", "server"],
   "main": "index.js",
   "bin": {
-    "wsmock": "node ./index.js"
+    "wsmock": "./index.js"
   },
   "scripts": {
     "test": "node ./index.js -c ./test/config.js"
