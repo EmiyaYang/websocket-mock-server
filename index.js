@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-
 const program = require("commander");
-const { setup } = require("./lib/server.js");
 const path = require("path");
+
+const supervisor = require("supervisor/lib/supervisor");
 
 // TODO: get version from package.json
 program
-  .version("0.1.2")
+  .version("0.1.+")
   .option("-c --config [config]", "Set the config to [config]")
   .parse(process.argv);
 
@@ -21,4 +21,6 @@ if (!/^[\d]+$/.test(config.port)) {
   process.exit(1);
 }
 
-setup(config);
+process.env.config = config;
+
+supervisor.run(["--watch", configPath, "--", "./lib/main.js"]);

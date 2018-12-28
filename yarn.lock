@@ -598,6 +598,11 @@ sigmund@^1.0.1:
   resolved "https://registry.npmjs.org/statuses/-/statuses-1.5.0.tgz#161c7dac177659fd9811f43771fa99381478628c"
   integrity sha1-Fhx9rBd2Wf2YEfQ3cfqZOBR4Yow=
 
+supervisor@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.npmjs.org/supervisor/-/supervisor-0.12.0.tgz#de7e6337015b291851c10f3538c4a7f04917ecc1"
+  integrity sha1-3n5jNwFbKRhRwQ81OMSn8EkX7ME=
+
 thenify-all@^1.0.0:
   version "1.6.0"
   resolved "https://registry.npmjs.org/thenify-all/-/thenify-all-1.6.0.tgz#1a1918d402d8fc3f98fbf234db0bcc8cc10e9726"
