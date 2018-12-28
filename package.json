@@ -1,6 +1,6 @@
 {
   "name": "websocket-mock-server",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "provide mock server for native websocket test",
   "keywords": [
     "websocket",
@@ -17,6 +17,10 @@
   },
   "author": "emiyayang",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EmiyaYang/websocket-mock-server.git"
+  },
   "dependencies": {
     "ejs": "^2.6.1",
     "koa": "^2.6.2",
