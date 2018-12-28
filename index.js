@@ -1,26 +1,25 @@
 #!/usr/bin/env node
-const program = require("commander");
 const path = require("path");
-
 const supervisor = require("supervisor/lib/supervisor");
+const argv = require("yargs").alias("c", "config").argv;
 
-// TODO: get version from package.json
-program
-  .version("0.1.+")
-  .option("-c --config [config]", "Set the config to [config]")
-  .parse(process.argv);
-
-const configPath = program.config
-  ? path.resolve(process.cwd(), program.config)
+const configPath = argv.c
+  ? path.resolve(process.cwd(), argv.c)
   : path.resolve(__dirname, "./test/config.js");
 
-const config = require(configPath);
+process.env.CONFIG_PATH = configPath;
 
-if (!/^[\d]+$/.test(config.port)) {
-  console.error("Invalid port!");
+try {
+  const config = require(configPath);
+
+  // 配置校验
+  if (!/^[\d]+$/.test(config.port)) {
+    console.error("Invalid port!");
+    process.exit(1);
+  }
+} catch (err) {
+  console.error(err);
   process.exit(1);
 }
-
-process.env.config = config;
 
 supervisor.run(["--watch", configPath, "--", "./lib/main.js"]);
