@@ -38,5 +38,4 @@ module.exports = {
 
 UI Console provide a chatroom-like way for you to send WebSocket message to server, which will be broadcast to other clients.
 
-![2018-12-28-15-31-42](./img/2018-12-28-15-31-42.png)
-
+![preview](./public/img/preview.png)

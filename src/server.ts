@@ -2,13 +2,16 @@ import path from "path";
 import ws from "ws";
 import Koa from "koa";
 import views from "koa-views";
+import kStatic from "koa-static";
+
+import { sendAutoMsg, pretreatMsg } from "./utils";
 
 type WebSocket = WSMock.WebSocket;
 
-const { sendAutoMsg, pretreatMsg } = require("./utils.js");
-
 function getWSS(port: number) {
   const app = new Koa();
+
+  app.use(kStatic(path.join(__dirname, "../public")));
 
   app.use(
     views(path.join(__dirname, "../view"), {
@@ -17,10 +20,12 @@ function getWSS(port: number) {
   );
 
   app.use(async (ctx: Koa.Context) => {
-    await ctx.render("index", {
-      title: "Mock Client Console",
-      port
-    });
+    const path = ctx.URL.pathname;
+    if (path === "/")
+      await ctx.render("index", {
+        title: "Mock Client Console",
+        port
+      });
   });
 
   const server = app.listen(port, () => {
