@@ -13,6 +13,7 @@
     "wsmock": "./index.js"
   },
   "scripts": {
+    "build": "tsc",
     "test": "node ./index.js"
   },
   "author": "emiyayang",
@@ -22,6 +23,9 @@
     "url": "https://github.com/EmiyaYang/websocket-mock-server.git"
   },
   "dependencies": {
+    "@types/koa": "^2.0.47",
+    "@types/koa-views": "^2.0.3",
+    "@types/ws": "^6.0.1",
     "ejs": "^2.6.1",
     "koa": "^2.6.2",
     "koa-views": "^6.1.5",
