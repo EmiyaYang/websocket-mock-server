@@ -1,36 +1,74 @@
-function load(port) {
-  // Get references to elements on the page.
-  var form = document.getElementById("message-form");
-  var messageField = document.getElementById("message");
-  var messagesList = document.getElementById("messages");
-  var socketStatus = document.getElementById("status");
-  var closeBtn = document.getElementById("close");
-
-  // Create a new WebSocket.
-  var socket = new WebSocket(`ws://localhost:${port}`);
-
-  // Handle any errors that occur.
+function CreateSocket(port, payload) {
+  const socket = new WebSocket(`ws://localhost:${port}`);
   socket.onerror = function(error) {
     console.log("WebSocket Error: " + error);
+    payload && payload.onerror && payload.onerror(error);
   };
 
   // Show a connected message when the WebSocket is opened.
   socket.onopen = function(event) {
-    socketStatus.innerHTML = "Connected to: " + event.currentTarget.url;
-    socketStatus.className = "open";
+    payload && payload.onerror && payload.onopen(event);
   };
 
   // Handle messages sent by the server.
   socket.onmessage = function(event) {
-    var message = event.data;
-    messagesList.innerHTML +=
-      '<li class="received"><span>Received:</span>' + message + "</li>";
+    payload && payload.onerror && payload.onmessage(event);
   };
 
   // Show a disconnected message when the WebSocket is closed.
   socket.onclose = function(event) {
-    socketStatus.innerHTML = "Disconnected from WebSocket.";
-    socketStatus.className = "closed";
+    payload && payload.onerror && payload.onclose(event);
+  };
+  return socket;
+}
+
+function load(port) {
+  const form = document.querySelector(".console__form");
+  const messageField = document.querySelector(".form__input");
+  const messagesList = document.querySelector(".console__messages");
+  const socketStatus = document.querySelector(".console__status");
+  const closeBtn = document.getElementById("close");
+  const submitBtn = document.getElementById("submit");
+
+  let socket;
+
+  function init() {
+    messagesList.innerHTML = "";
+    socket = CreateSocket(port, {
+      onopen: function(event) {
+        socketStatus.innerHTML = "Connected to: " + event.currentTarget.url;
+        socketStatus.className = "open";
+
+        closeBtn.className = "form__btn form__btn-disabled";
+        closeBtn.innerHTML = "Close Connection";
+      },
+      onerror: function(event) {},
+      onmessage: function(event) {
+        const message = event.data;
+        messagesList.innerHTML +=
+          '<li class="received"><span>Received:</span>' + message + "</li>";
+        messagesList.scrollTop = messagesList.scrollHeight;
+      },
+      onclose: function(event) {
+        socketStatus.innerHTML = "Disconnected from WebSocket.";
+        socketStatus.className = "closed";
+
+        closeBtn.className = "form__btn";
+        closeBtn.innerHTML = "Connect";
+      }
+    });
+  }
+
+  init();
+
+  form.onkeydown = function(e) {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      if (socket) {
+        submitBtn.click();
+        return;
+      }
+    }
   };
 
   // Send a message when the form is submitted.
@@ -38,11 +76,11 @@ function load(port) {
     e.preventDefault();
 
     // Retrieve the message from the textarea.
-    var message = messageField.value;
+    let message = messageField.value;
 
-    eval(`var tmp = ${message}`);
+    // eval(`var tmp = ${message}`);
 
-    message = JSON.stringify(tmp);
+    // message = JSON.stringify(tmp);
 
     // Send the message through the WebSocket.
     socket.send(message);
@@ -50,6 +88,8 @@ function load(port) {
     // Add the message to the messages list.
     messagesList.innerHTML +=
       '<li class="sent"><span>Sent:</span>' + message + "</li>";
+
+    messagesList.scrollTop = messagesList.scrollHeight;
 
     // Clear out the message field.
     messageField.value = "";
@@ -61,8 +101,11 @@ function load(port) {
   closeBtn.onclick = function(e) {
     e.preventDefault();
 
-    // Close the WebSocket.
-    socket.close();
+    if (socket.readyState === socket.OPEN) {
+      socket.close();
+    } else if (socket.readyState === socket.CLOSED) {
+      init();
+    }
 
     return false;
   };

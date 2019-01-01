@@ -23,8 +23,11 @@ try {
 }
 
 supervisor.run([
+  "-q",
   "--watch",
   configPath,
+  "-n",
+  "error",
   "--",
   path.resolve(__dirname, "./lib/main.js")
 ]);
