@@ -1071,6 +1071,56 @@ vary@^1.1.2:
   resolved "https://registry.npmjs.org/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
+websocket-mock-server@./websocket-mock-server-0.1.10.tgz:
+  version "0.1.10"
+  resolved "./websocket-mock-server-0.1.10.tgz#ebf3c55c7c14b71306d989ead73c10e06db01437"
+  dependencies:
+    "@types/koa" "^2.0.47"
+    "@types/koa-static" "^4.0.0"
+    "@types/koa-views" "^2.0.3"
+    "@types/ws" "^6.0.1"
+    ejs "^2.6.1"
+    koa "^2.6.2"
+    koa-static "^5.0.0"
+    koa-views "^6.1.5"
+    supervisor "^0.12.0"
+    websocket-mock-server "./websocket-mock-server-0.1.9.tgz"
+    ws "^6.1.2"
+    yargs "^12.0.5"
+
+websocket-mock-server@./websocket-mock-server-0.1.9.tgz:
+  version "0.1.9"
+  resolved "./websocket-mock-server-0.1.9.tgz#87a398cec6ab512bdd141ab857459720c4143d8c"
+  dependencies:
+    "@types/koa" "^2.0.47"
+    "@types/koa-static" "^4.0.0"
+    "@types/koa-views" "^2.0.3"
+    "@types/ws" "^6.0.1"
+    ejs "^2.6.1"
+    koa "^2.6.2"
+    koa-static "^5.0.0"
+    koa-views "^6.1.5"
+    supervisor "^0.12.0"
+    ws "^6.1.2"
+    yargs "^12.0.5"
+
+websocket-mock-server@./websocket-mock-server-v0.1.10.tgz:
+  version "0.1.10"
+  resolved "./websocket-mock-server-v0.1.10.tgz#7a3f26dcba174aa07ff943b4240c699eaa174fca"
+  dependencies:
+    "@types/koa" "^2.0.47"
+    "@types/koa-static" "^4.0.0"
+    "@types/koa-views" "^2.0.3"
+    "@types/ws" "^6.0.1"
+    ejs "^2.6.1"
+    koa "^2.6.2"
+    koa-static "^5.0.0"
+    koa-views "^6.1.5"
+    supervisor "^0.12.0"
+    websocket-mock-server "./websocket-mock-server-0.1.10.tgz"
+    ws "^6.1.2"
+    yargs "^12.0.5"
+
 which-module@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/which-module/-/which-module-2.0.0.tgz#d9ef07dce77b9902b8a3a8fa4b31c3e3f7e6e87a"

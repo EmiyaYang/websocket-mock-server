@@ -1,6 +1,6 @@
 {
   "include": [
-    "./src/**/*"
+    "./__src/**/*"
   ],
   "exclude": [],
   "compilerOptions": {

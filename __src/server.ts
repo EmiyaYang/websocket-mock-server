@@ -14,7 +14,7 @@ function getWSS(port: number) {
   app.use(kStatic(path.join(__dirname, "../public")));
 
   app.use(
-    views(path.join(__dirname, "../view"), {
+    views(path.join(__dirname, "../public/view"), {
       extension: "ejs"
     })
   );
