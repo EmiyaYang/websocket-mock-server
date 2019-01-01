@@ -2,6 +2,8 @@ A simple and configurable mock server with UI console for websocket, with which 
 
 # Installation
 
+## [npm package](https://www.npmjs.com/package/websocket-mock-server)
+
 ```
 npm install websocket-mock-server
 ```
@@ -12,13 +14,33 @@ or
 yarn add websocket-mock-server
 ```
 
+## [github repo](https://github.com/EmiyaYang/websocket-mock-server)
+
+```
+git clone https://github.com/EmiyaYang/websocket-mock-server.git
+```
+
+```
+npm install
+npm run build
+npm run test
+```
+
+or
+
+```
+yarn install
+yarn build
+yarn test
+```
+
 # Configuration
 
 package.json
 ```json
 {
   "script": {
-    "wsmock": "wsmock -c CONFIG_PATH"
+    "mock": "wsmock -c CONFIG_PATH"
   }
 }
 ```
@@ -34,9 +56,24 @@ module.exports = {
 };
 ```
 
-# UI Console
+# Run
+
+
+Terminal
+```
+npm run mock
+```
+
+or 
+```
+yarn mock
+```
+
+![preview](./public/img/preview.png)
 
 UI Console provide a chatroom-like way for you to send WebSocket message to server, which will be broadcast to other clients.
 
-![2018-12-28-15-31-42](http://pj553nwpz.bkt.clouddn.com/2018-12-28-15-31-42.png)
 
+# TODO
+
+- [ ] feat: Serial message flow test; 
