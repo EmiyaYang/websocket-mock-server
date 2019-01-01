@@ -1,8 +1,8 @@
-node_modules/
-__src/
+node_modules
+.gitignore
+*.d.ts
+*.tgz
+tsconfig.json
+yarn.lock
+__src
 __src/**/*
-.gitignore/
-*.d.ts/
-*.tgz/
-tsconfig.json/
-yarn.lock/
