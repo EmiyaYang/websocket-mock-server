@@ -9,25 +9,11 @@ const configPath = argv.c
 
 process.env.CONFIG_PATH = configPath;
 
-try {
-  const config = require(configPath);
-
-  // 配置校验
-  if (!/^[\d]+$/.test(config.port)) {
-    console.error("Invalid port!");
-    process.exit(1);
-  }
-} catch (err) {
-  console.error(err);
-  process.exit(1);
-}
-
 supervisor.run([
-  "-q",
   "--watch",
   configPath,
   "-n",
-  "error",
+  "exit",
   "--",
   path.resolve(__dirname, "./lib/main.js")
 ]);

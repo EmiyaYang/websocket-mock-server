@@ -1,6 +1,6 @@
 {
   "name": "websocket-mock-server",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "provide mock server for native websocket test",
   "keywords": [
     "websocket",

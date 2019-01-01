@@ -5,7 +5,7 @@ export function pretreatMsg(msg: any) {
   try {
     return JSON.parse(msg);
   } catch (err) {
-    console.warn(err);
+    console.warn("Invalid JSON string format。");
   }
   return msg;
 }
