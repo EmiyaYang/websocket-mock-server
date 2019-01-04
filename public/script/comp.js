@@ -31,8 +31,10 @@ const ListView = (function() {
 
   function appendItem(type, msg) {
     const item = document.createElement("li");
-    if (type === "received") item.className = "listview__item-received";
-    else if (type === "sent") item.className = "listview__item-sent";
+    if (type === "received")
+      item.className = "listview__item listview__item-received";
+    else if (type === "sent")
+      item.className = "listview__item listview__item-sent";
     item.innerHTML = msg;
     dom.append(item);
     _scrollToBottom();

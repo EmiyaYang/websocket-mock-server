@@ -53,23 +53,13 @@ body {
   font-size: 0.95rem;
 }
 
-.console__listview li {
+.listview__item {
   padding: 0.5rem 0.75rem;
   border-bottom: 1px solid #eee;
 }
 
-.console__listview li:first-child {
+.listview__item:first-child {
   border-top: 1px solid #eee;
-}
-
-.console__listview li span {
-  display: inline-block;
-  width: 90px;
-  font-weight: bold;
-  color: #999;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
 .listview__item-sent {
