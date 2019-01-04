@@ -32,36 +32,37 @@ body {
   margin-bottom: 1rem;
 }
 
-.console__messages {
+.console__listview {
   max-height: 350px;
+  overflow-x: hidden;
   overflow-y: scroll;
 }
 
-.open {
+.console__status-on {
   color: green;
 }
 
-.closed {
+.console__status-off {
   color: red;
 }
 
-ul {
+.console__listview {
   list-style: none;
   margin: 0;
   padding: 0;
   font-size: 0.95rem;
 }
 
-ul li {
+.console__listview li {
   padding: 0.5rem 0.75rem;
   border-bottom: 1px solid #eee;
 }
 
-ul li:first-child {
+.console__listview li:first-child {
   border-top: 1px solid #eee;
 }
 
-ul li span {
+.console__listview li span {
   display: inline-block;
   width: 90px;
   font-weight: bold;
@@ -71,11 +72,11 @@ ul li span {
   letter-spacing: 1px;
 }
 
-.sent {
+.listview__item-sent {
   background-color: #f7f7f7;
 }
 
-.received {
+.listview__item-received {
 }
 
 .console__form {
@@ -116,6 +117,6 @@ ul li span {
   border-bottom: 1px solid #5d7d1f;
 }
 
-.form__btn-disabled {
+.form__btn-off {
   background: gray;
 }
