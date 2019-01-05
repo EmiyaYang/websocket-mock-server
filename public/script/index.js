@@ -3,10 +3,16 @@ function load(port) {
   const messageField = document.querySelector(".form__input");
   const submitBtn = document.querySelector(".form__btn-submit");
 
+  const listview = ListView({
+    components: {
+      input: messageField
+    }
+  });
+
   let socket;
 
   function init() {
-    ListView.reset();
+    listview.reset();
 
     socket = CreateSocket(port, {
       onopen: function(event) {
@@ -16,7 +22,7 @@ function load(port) {
       onerror: function(event) {},
       onmessage: function(event) {
         const message = event.data;
-        ListView.appendItem("received", message);
+        listview.appendItem("received", message);
       },
       onclose: function(event) {
         SocketStatus.toggle(true);
@@ -52,7 +58,7 @@ function load(port) {
     socket.send(message);
 
     // Add the message to the messages list.
-    ListView.appendItem("sent", message);
+    listview.appendItem("sent", message);
 
     // Clear out the message field.
     messageField.value = "";

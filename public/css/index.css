@@ -6,6 +6,22 @@
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+  height: 3px;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #69c773;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: rgba(0, 0, 0, 0);
+}
+
 body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 100%;
@@ -58,10 +74,11 @@ body {
 }
 
 .listview__item {
-  padding: 0.5rem 0.75rem;
   border-bottom: 1px solid #eee;
   display: flex;
   flex-flow: row nowrap;
+  overflow-x: scroll;
+  overflow: -moz-hidden-unscrollable;
 }
 
 .listview__item:first-child {
@@ -75,11 +92,22 @@ body {
 .listview__item-received {
 }
 
+.listItem__status,
+.listItem__content {
+  padding: 0.5rem 0.75rem;
+}
+
 .listItem__status {
-  display: inline-block;
+  display: flex;
+  align-items: center;
   min-width: 8em;
   font-weight: bold;
   text-transform: uppercase;
+  cursor: pointer;
+}
+
+.listItem__status:hover {
+  background-color: rgba(164, 198, 98, 0.5);
 }
 
 .listItem__content {
@@ -143,4 +171,83 @@ body {
 
 .JSON__number {
   color: blue;
+}
+
+/* JSON */
+
+.json > .json__item {
+  display: block;
+}
+
+.json__item {
+  display: none;
+  margin-top: 10px;
+  padding-left: 20px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.json__item--collapsible {
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+.json__item--collapsible::after {
+  background-color: lightgrey;
+  content: "";
+  height: 100%;
+  left: 9px;
+  position: absolute;
+  top: 26px;
+  width: 1px;
+}
+
+.json__item--collapsible:hover > .json__key,
+.json__item--collapsible:hover > .json__value {
+  text-decoration: underline;
+}
+
+.json__toggle {
+  display: none;
+}
+.json__toggle:checked ~ .json__item {
+  display: block;
+}
+
+.json__toggle:checked ~ .json__key::before {
+  content: "-";
+  position: absolute;
+  left: 5px;
+}
+.json__toggle ~ .json__key::before {
+  content: "+";
+  position: absolute;
+  left: 5px;
+}
+
+.json__key {
+  color: darkblue;
+  display: inline;
+}
+.json__key::after {
+  content: ": ";
+}
+
+.json__value {
+  display: inline;
+}
+
+.json__value--string {
+  color: green;
+}
+
+.json__value--number {
+  color: blue;
+}
+
+.json__value--boolean {
+  color: red;
 }

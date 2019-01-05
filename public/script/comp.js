@@ -22,7 +22,8 @@ function CreateSocket(port, payload) {
   return socket;
 }
 
-const ListView = (function() {
+// components: form__input
+function ListView({ components }) {
   const dom = document.querySelector(".console__listview");
 
   function _scrollToBottom() {
@@ -33,27 +34,35 @@ const ListView = (function() {
     const status = document.createElement("div");
     status.className = "listItem__status";
     status.innerHTML = type;
+    status.title = "Copy this message";
 
-    // FIXME:
-    // msg = {
-    //   num: 1234,
-    //   str: "字符串",
-    //   arr: [1, 2, 3, 4, 5, 6],
-    //   obj: {
-    //     name: "tom",
-    //     age: 10,
-    //     like: ["a", "b"]
-    //   }
-    // };
+    status.onclick = function(e) {
+      const content = e.currentTarget.nextSibling;
+
+      if (!content) throw new Error("Target content dom is null!");
+      if (!components || !components.input)
+        throw new Error("No components input");
+
+      const data = content.getAttribute("data-obj");
+
+      if (data) components.input.value = data;
+    };
+
+    const content = document.createElement("div");
+    content.className = "listItem__content";
+    content.setAttribute("data-obj", msg);
+
     try {
       msg = JSON.parse(msg);
     } catch (e) {
       console.warn(e);
     }
-    const content = document.createElement("div");
-    content.className = "listItem__content";
-    content.innerHTML =
-      "<pre>" + syntaxHighlight(JSON.stringify(msg, null, 4)) + "</pre>";
+
+    if (typeof msg === "object") {
+      content.innerHTML = jsonViewer(msg, false);
+    } else {
+      content.innerHTML = msg;
+    }
 
     const item = document.createElement("li");
     item.className = "listview__item listview__item-" + type;
@@ -72,7 +81,7 @@ const ListView = (function() {
     appendItem,
     reset
   };
-})();
+}
 
 const SwitchBtn = (function() {
   const dom = document.querySelector(".form__btn-switch");
