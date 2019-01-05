@@ -30,13 +30,37 @@ const ListView = (function() {
   }
 
   function appendItem(type, msg) {
+    const status = document.createElement("div");
+    status.className = "listItem__status";
+    status.innerHTML = type;
+
+    // FIXME:
+    // msg = {
+    //   num: 1234,
+    //   str: "字符串",
+    //   arr: [1, 2, 3, 4, 5, 6],
+    //   obj: {
+    //     name: "tom",
+    //     age: 10,
+    //     like: ["a", "b"]
+    //   }
+    // };
+    try {
+      msg = JSON.parse(msg);
+    } catch (e) {
+      console.warn(e);
+    }
+    const content = document.createElement("div");
+    content.className = "listItem__content";
+    content.innerHTML =
+      "<pre>" + syntaxHighlight(JSON.stringify(msg, null, 4)) + "</pre>";
+
     const item = document.createElement("li");
-    if (type === "received")
-      item.className = "listview__item listview__item-received";
-    else if (type === "sent")
-      item.className = "listview__item listview__item-sent";
-    item.innerHTML = msg;
+    item.className = "listview__item listview__item-" + type;
+    item.append(status);
+    item.append(content);
     dom.append(item);
+
     _scrollToBottom();
   }
 
@@ -97,7 +121,7 @@ const SocketStatus = (function() {
   const status = [
     {
       class: "console__status console__status-on",
-      title: "Connected to"
+      title: "Connected to "
     },
     {
       class: "console__status console__status-off",

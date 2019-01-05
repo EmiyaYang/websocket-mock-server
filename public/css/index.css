@@ -53,9 +53,15 @@ body {
   font-size: 0.95rem;
 }
 
+.console__form {
+  margin-top: 1.5rem;
+}
+
 .listview__item {
   padding: 0.5rem 0.75rem;
   border-bottom: 1px solid #eee;
+  display: flex;
+  flex-flow: row nowrap;
 }
 
 .listview__item:first-child {
@@ -69,8 +75,16 @@ body {
 .listview__item-received {
 }
 
-.console__form {
-  margin-top: 1.5rem;
+.listItem__status {
+  display: inline-block;
+  min-width: 8em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.listItem__content {
+  display: inline-block;
+  flex-grow: 1;
 }
 
 .form__input {
@@ -109,4 +123,24 @@ body {
 
 .form__btn-off {
   background: gray;
+}
+
+.JSON__key {
+  color: black;
+}
+
+.JSON__boolean {
+  color: green;
+}
+
+.JSON__string {
+  color: orange;
+}
+
+.JSON__null {
+  color: tomato;
+}
+
+.JSON__number {
+  color: blue;
 }
