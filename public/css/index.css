@@ -7,7 +7,7 @@
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 3px;
   height: 3px;
   background-color: rgba(0, 0, 0, 0);
   border-radius: 4px;
