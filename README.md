@@ -8,12 +8,6 @@ A simple and configurable mock server with UI console for websocket, with which 
 npm install websocket-mock-server
 ```
 
-or
-
-```
-yarn add websocket-mock-server
-```
-
 ## [github repo](https://github.com/EmiyaYang/websocket-mock-server)
 
 ```
@@ -24,14 +18,6 @@ git clone https://github.com/EmiyaYang/websocket-mock-server.git
 npm install
 npm run build
 npm run test
-```
-
-or
-
-```
-yarn install
-yarn build
-yarn test
 ```
 
 # Configuration
@@ -64,14 +50,9 @@ Terminal
 npm run mock
 ```
 
-or 
-```
-yarn mock
-```
-
 ![preview](./public/img/preview.png)
 
-UI Console provide a chatroom-like way for you to send WebSocket message to server, which will be broadcast to other clients.
+The frontend provide a chatroom-like way for you to send WebSocket message to server, which will be broadcast to other clients.
 
 
 # TODO

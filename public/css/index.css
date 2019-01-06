@@ -6,6 +6,21 @@
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #69c773;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: rgba(0, 0, 0, 0);
+}
+
 body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 100%;
@@ -32,54 +47,71 @@ body {
   margin-bottom: 1rem;
 }
 
-.console__messages {
+.console__listview {
   max-height: 350px;
+  overflow-x: hidden;
   overflow-y: scroll;
 }
 
-.open {
+.console__status-on {
   color: green;
 }
 
-.closed {
+.console__status-off {
   color: red;
 }
 
-ul {
+.console__listview {
   list-style: none;
   margin: 0;
   padding: 0;
   font-size: 0.95rem;
 }
 
-ul li {
-  padding: 0.5rem 0.75rem;
-  border-bottom: 1px solid #eee;
+.console__form {
+  margin-top: 1.5rem;
 }
 
-ul li:first-child {
+.listview__item {
+  border-bottom: 1px solid #eee;
+  display: flex;
+  flex-flow: row nowrap;
+  overflow-x: scroll;
+  overflow: -moz-hidden-unscrollable;
+}
+
+.listview__item:first-child {
   border-top: 1px solid #eee;
 }
 
-ul li span {
-  display: inline-block;
-  width: 90px;
-  font-weight: bold;
-  color: #999;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.sent {
+.listview__item-sent {
   background-color: #f7f7f7;
 }
 
-.received {
+.listview__item-received {
 }
 
-.console__form {
-  margin-top: 1.5rem;
+.listItem__status,
+.listItem__content {
+  padding: 0.5rem 0.75rem;
+}
+
+.listItem__status {
+  display: flex;
+  align-items: center;
+  min-width: 8em;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.listItem__status:hover {
+  background-color: rgba(164, 198, 98, 0.5);
+}
+
+.listItem__content {
+  display: inline-block;
+  flex-grow: 1;
 }
 
 .form__input {
@@ -116,6 +148,105 @@ ul li span {
   border-bottom: 1px solid #5d7d1f;
 }
 
-.form__btn-disabled {
+.form__btn-off {
   background: gray;
+}
+
+.JSON__key {
+  color: black;
+}
+
+.JSON__boolean {
+  color: green;
+}
+
+.JSON__string {
+  color: orange;
+}
+
+.JSON__null {
+  color: tomato;
+}
+
+.JSON__number {
+  color: blue;
+}
+
+/* JSON */
+
+.json > .json__item {
+  display: block;
+}
+
+.json__item {
+  display: none;
+  margin-top: 10px;
+  padding-left: 20px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.json__item--collapsible {
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+.json__item--collapsible::after {
+  background-color: lightgrey;
+  content: "";
+  height: 100%;
+  left: 9px;
+  position: absolute;
+  top: 26px;
+  width: 1px;
+}
+
+.json__item--collapsible:hover > .json__key,
+.json__item--collapsible:hover > .json__value {
+  text-decoration: underline;
+}
+
+.json__toggle {
+  display: none;
+}
+.json__toggle:checked ~ .json__item {
+  display: block;
+}
+
+.json__toggle:checked ~ .json__key::before {
+  content: "-";
+  position: absolute;
+  left: 5px;
+}
+.json__toggle ~ .json__key::before {
+  content: "+";
+  position: absolute;
+  left: 5px;
+}
+
+.json__key {
+  color: darkblue;
+  display: inline;
+}
+.json__key::after {
+  content: ": ";
+}
+
+.json__value {
+  display: inline;
+}
+
+.json__value--string {
+  color: green;
+}
+
+.json__value--number {
+  color: blue;
+}
+
+.json__value--boolean {
+  color: red;
 }

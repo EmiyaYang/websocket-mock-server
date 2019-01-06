@@ -3,6 +3,7 @@ import ws from "ws";
 import Koa from "koa";
 import views from "koa-views";
 import kStatic from "koa-static";
+import qs from "querystring";
 
 import { sendAutoMsg, pretreatMsg } from "./utils";
 
@@ -52,6 +53,8 @@ function setup({ port, rule, autoMsgTimeout }: Config) {
   wss.on("connection", (ws: WebSocket, req: Koa.Request) => {
     ws.user = `User ${String.fromCharCode(65 + index++)}`;
     wss.broadcast(`${ws.user} enters Console room`, ws.user);
+    const query = req.url.split("?")[1];
+    if (query) wss.broadcast(qs.parse(query), ws.user);
 
     ws.on("message", message => {
       if (!message) return;
