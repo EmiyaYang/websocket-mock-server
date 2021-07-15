@@ -25,7 +25,7 @@ npm run test
 package.json
 ```json
 {
-  "script": {
+  "scripts": {
     "mock": "wsmock -c CONFIG_PATH"
   }
 }
